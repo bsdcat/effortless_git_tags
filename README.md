@@ -15,14 +15,15 @@ exclusively, and it seemed easier to share a general solution instead
 of two almost-identical solutions.  It is trivial to remove one or the
 other to meet your needs.
 
-Second, it works with Exuberant Ctags, Emacs Etags, and BSD ctags.
-There are helpful variables in the 'etags' script to specify a path
-and/or arguments to pick the right one, in case you happen to have
-multiple versions installed.  A couple examples of doing things unusually:
+Second, it works with Exuberant Ctags, Emacs Etags, and BSD ctags.  It
+should also work with [Universal Ctags][4].  There are helpful variables in
+the 'etags' script to specify a path and/or arguments to pick the
+right one, in case you happen to have multiple versions installed.  A
+couple examples of doing things unusually:
 
 * `ETAGS="ctags -e"` will use Exuberent Ctags from your `PATH` in etags
   mode to generate the tags file for Emacs.
-* `CTAGS=/Applications/Emacs.app/Contents/MacOS/bin-x86_64-10_9/ctags` will
+* `CTAGS=/Applications/Emacs.app/Contents/MacOS/bin-<something>/ctags` will
   use the ctags from your copy of [Emacs for Mac OS X][2] to generate the
   tags file for Vi.
 
@@ -40,12 +41,12 @@ For your editor, if appropriate, take a look at `vim-git` or
 `find-git-etags.el` included in this repository.  Of course many other
 editors support these formats, perhaps you can easily configure them
 to look for a tags file under the .git directory.  You can also adjust
-the `template/hooks/etags` script to drop the tags file(s) elsewhere
-as needed.
+the `git_template/hooks/etags` script to drop the tags file(s)
+elsewhere as needed.
 
 For git, to make it easiest you will need to set a template directory.
 For example, `git config --global init.templatedir
-~/effortless_git_tags/template` will use the template directory
+~/effortless_git_tags/git_template` will use the template directory
 included in this repository without modification.  Then to add these
 hooks to existing repositories you have, simply `git init` in them.
 
@@ -63,3 +64,4 @@ try to make it behave there too.  Patches gratefully accepted.
 [1]: http://tbaggery.com/2011/08/08/effortless-ctags-with-git.html
 [2]: http://emacsformacosx.com/
 [3]: https://github.com/tpope/vim-git
+[4]: https://github.com/universal-ctags/ctags

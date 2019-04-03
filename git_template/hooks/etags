@@ -32,8 +32,11 @@ ETAGS=etags
 
 cd "${WORK_PATH}"
 
+ETAGS_VERSION=`${ETAGS} --version 2>&1`
 
-if ${ETAGS} --version 2>&1 | grep -q 'Exuberant Ctags'; then
+if echo "${ETAGS_VERSION}" | grep -q 'Exuberant Ctags'; then
+	EX_ETAGS=1
+elif echo "${ETAGS_VERSION}" | grep -q 'Universal Ctags'; then
 	EX_ETAGS=1
 else
 	EX_ETAGS=0
