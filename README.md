@@ -16,16 +16,16 @@ of two almost-identical solutions.  It is trivial to remove one or the
 other to meet your needs.
 
 Second, it works with Exuberant Ctags, Emacs Etags, and BSD ctags.  It
-should also work with [Universal Ctags][4].  There are helpful variables in
-the 'etags' script to specify a path and/or arguments to pick the
-right one, in case you happen to have multiple versions installed.  A
-couple examples of doing things unusually:
+should also work with [Universal Ctags][4].  To help pick the right
+binary if necessary, the main hook looks for `EFFORTLESS_CTAGS` and
+`EFFORTLESS_ETAGS` environment variables to override the default
+command. A couple examples of doing things unusually:
 
-* `ETAGS="ctags -e"` will use Exuberent Ctags from your `PATH` in etags
-  mode to generate the tags file for Emacs.
-* `CTAGS=/Applications/Emacs.app/Contents/MacOS/bin-<something>/ctags` will
-  use the ctags from your copy of [Emacs for Mac OS X][2] to generate the
-  tags file for Vi.
+* `EFFORTLESS_ETAGS="ctags -e"` will use Exuberent Ctags from your `PATH` in
+  etags mode to generate the tags file for Emacs.
+* `EFFORTLESS_CTAGS=/Applications/Emacs.app/Contents/MacOS/bin-x86_64-10_10/ctags`
+  will use the ctags from your copy of [Emacs for Mac OS X][2] to generate
+  the tags file for Vi.
 
 Third, and this is minor, instead of generating `.git/TAGS` for Emacs,
 it generates `.git/ETAGS` for use on MacOS X with case-insensitive

@@ -27,8 +27,17 @@ TEMPCTAGSPATH="${TAGSPATH}/$$.tags"
 ETAGSPATH="${TAGSPATH}/ETAGS"
 CTAGSPATH="${TAGSPATH}/tags"
 
-CTAGS=ctags
-ETAGS=etags
+if [ x"${EFFORTLESS_ETAGS}" != x"" ]; then
+	ETAGS="${EFFORTLESS_ETAGS}"
+else
+	ETAGS=etags
+fi
+
+if [ x"${EFFORTLESS_CTAGS}" != x"" ]; then
+	CTAGS="${EFFORTLESS_CTAGS}"
+else
+	CTAGS=ctags
+fi
 
 cd "${WORK_PATH}"
 
