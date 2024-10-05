@@ -25,7 +25,7 @@
   (declare-function vc-git-root "vc-git" (file))
   (when
       (and (buffer-file-name)
-	   (and (vc-git-root (buffer-file-name)))
+	   (vc-git-root (buffer-file-name))
            (file-readable-p (expand-file-name ".git/ETAGS" (vc-git-root (buffer-file-name)))))
     (expand-file-name ".git/ETAGS" (vc-git-root (buffer-file-name)))))
 
