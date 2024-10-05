@@ -1,3 +1,6 @@
+;;; find-get-etags --- Find git repo-specific etags file if it exists.
+
+;;; Commentary:
 ;Copyright (c) 2016, Matthew Weigel
 ;
 ;Permission to use, copy, modify, and/or distribute this software for any
@@ -6,7 +9,7 @@
 ;
 ;THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
 ;WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
-;MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
+;MERCHANTABILITY AND FITNESS.  IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
 ;ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
 ;WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
 ;ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
@@ -15,11 +18,17 @@
 ; This code can be added to your .emacs or loaded in any way you
 ; find most appropriate in order to work with the effortlessly up-to-date
 ; etags file generated with the git hooks in this repository
+;;; Code:
 (defun find-git-repo-tags-file ()
   "Find a TAGS file (as ETAGS) if the current buffer is in a git repository."
+  (require 'vc-git)
+  (declare-function vc-git-root "vc-git" (file))
   (when
-      (and (buffer-file-name) (vc-git-root (buffer-file-name))
+      (and (buffer-file-name)
+	   (and (vc-git-root (buffer-file-name)))
            (file-readable-p (expand-file-name ".git/ETAGS" (vc-git-root (buffer-file-name)))))
     (expand-file-name ".git/ETAGS" (vc-git-root (buffer-file-name)))))
 
 (defvar default-tags-table-function 'find-git-repo-tags-file)
+(provide 'find-git-etags)
+;;; find-git-etags.el ends here
